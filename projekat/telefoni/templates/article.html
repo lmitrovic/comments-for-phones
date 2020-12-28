@@ -1,0 +1,39 @@
+{% extends 'master.html' %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <h1>
+            {% if perms.telefoni.change_article %}
+            <a href="{% url 'telefoni:edit' article.id %}">
+                <span class="btn btn-primary">Edit</span>
+            </a>
+            {% endif %}
+            {% if perms.telefoni.delete_article %}
+            <a href="{% url 'telefoni:delete' article.id %}">
+                <span class="btn btn-danger">Delete</span>
+            </a>
+            {% endif %}
+            <a href="{% url 'telefoni:newcomment' article.id %}">
+                <span class="btn btn-warning">Add Comment</span>
+            </a>
+            <a href="{% url 'telefoni:allcomments' article.id %}">
+                <span class="btn btn-info">All Comments</span>
+            </a>
+        </h1>
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <p>{{ article.producer }} {{ article.model }}</p>
+            <footer class="blockquote-footer">
+                Creator:
+                <cite title="Source Title">
+                    {{ article.owner.username }}
+                </cite>
+            </footer>
+        </blockquote>
+    </div>
+</div>
+
+{% endblock %}

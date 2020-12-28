@@ -1,0 +1,37 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'telefoni:articles' %}">
+        <img src="{% static 'img/mobile.png' %}" width="30" height="30" class="d-inline-block align-top" alt="logo" />
+        Mobiles
+    </a>
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            {% if not perms.telefoni.add_article %}
+            <a class="nav-link disabled" href="{% url 'telefoni:new' %}">New mobile</a>
+            {% else %}
+            <a class="nav-link" href="{% url 'telefoni:new' %}">New mobile</a>
+            {% endif %}
+        </li>
+    </ul>
+
+    {% if user.is_authenticated %}
+    <a class="nav-link" href="{% url 'logout' %}">Logout {{ user.get_username }}</a>
+    {% endif %}
+
+</nav>
+
+<div class="myDiv">
+    <b-jumbotron class="bg-primary text-light shadow mt-0 header" header="Mobiles Impressions">
+        <img src="{% static 'img/header.png' %}" alt="" class="mw-100" width="400px" />
+    </b-jumbotron>
+</div>
+
+<style>
+    .myDiv {
+        border: 5px outset red;
+        background-color: lightblue;
+        text-align: center;
+    }
+</style>

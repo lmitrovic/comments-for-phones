@@ -1,0 +1,45 @@
+{% extends 'master.html' %}
+
+{% block title %}
+Edit mobile
+{% endblock %}
+
+{% block content %}
+
+<form method="post" action="{% url 'telefoni:edit' id %}">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="{{ form.producer.id_for_label }}">{{ form.producer.label_tag }}</label>
+        <input type="text" class="form-control" id="{{ form.producer.id_for_label }}" name="{{ form.producer.name }}"
+            value="{{ form.producer.value }}">
+        {% if form.producer.errors %}
+        <div class="alert alert-danger">
+            <ul style="text-align: left">
+                {% for error in form.producer.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.model.id_for_label }}">{{ form.model.label_tag }}</label>
+        <input type="text" class="form-control" id="{{ form.model.id_for_label }}" name="{{ form.model.name }}"
+            value="{{ form.model.value }}">
+
+        {% if form.model.errors %}
+        <div class="alert alert-danger">
+            <ul style="text-align: left">
+                {% for error in form.model.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <input type="submit" class="btn btn-primary btn-lg" value="Save" />
+</form>
+
+{% endblock %}
